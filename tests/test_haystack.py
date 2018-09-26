@@ -1,5 +1,5 @@
 import unittest
-from search.search import StringSearch
+from search.haystack import HaystackCollection, Operator
 
 
 class TestStringSearch(unittest.TestCase):
@@ -10,15 +10,15 @@ class TestStringSearch(unittest.TestCase):
             'this is another test string',
             'this is yet another test string'
         ]
-        string_search = StringSearch(input_strings)
+        haystacks = HaystackCollection(input_strings)
 
         self.assertEqual(
-            string_search.find_indices_containing_all_of(['another', 'test']),
+            haystacks.search(Operator('AND'), ['another', 'test']),
             [1, 2]
         )
 
         self.assertEqual(
-            string_search.find_indices_containing_all_of(['yet', 'another']),
+            haystacks.search(Operator('AND'), ['yet', 'another']),
             [2]
         )
 
@@ -28,9 +28,7 @@ class TestStringSearch(unittest.TestCase):
             'this is another test string',
             'this is yet another test string'
         ]
-        string_search = StringSearch(input_strings)
+        haystacks = HaystackCollection(input_strings)
 
-        result = string_search.find_indices_containing_any_of(['yet', 'another'])
+        result = haystacks.search(Operator('OR'), ['yet', 'another'])
         self.assertEqual(result, [1, 2])
-
-

@@ -4,17 +4,8 @@
     OR - one or more keywords must exist in the string
 """
 import argparse
-from enum import Enum
 import sys
-from search.search import StringSearch
-
-
-class Operator(Enum):
-    operator_or = 'OR'
-    operator_and = 'AND'
-
-    def __str__(self):
-        return self.value
+from search.haystack import HaystackCollection, Operator
 
 
 def parse_args(cli_args):
@@ -28,18 +19,14 @@ def parse_args(cli_args):
     return parser.parse_args(cli_args)
 
 
-if __name__ == "__main__":
-    parsed_args = parse_args(sys.argv[1:])
-    try:
-        with open(parsed_args.file) as f:
-            content = f.readlines()
-    except EnvironmentError:
-        print("Could not read file %s" % parsed_args.file)
-        sys.exit(1)
-
-    string_search = StringSearch(content)
-
-    if parsed_args.operator == Operator("OR"):
-        print(string_search.find_indices_containing_any_of(parsed_args.keywords.split()))
-    else:
-        print(string_search.find_indices_containing_all_of(parsed_args.keywords.split()))
+# if __name__ == "__main__":
+    # parsed_args = parse_args(sys.argv[1:])
+    # try:
+    #     with open(parsed_args.file) as f:
+    #         content = f.readlines()
+    # except EnvironmentError:
+    #     print("Could not read file %s" % parsed_args.file)
+    #     sys.exit(1)
+    #
+    # haystacks = HaystackCollection(content)
+    # print(haystacks.search(Operator, parsed_args.keywords.split()))
