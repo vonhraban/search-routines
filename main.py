@@ -19,14 +19,21 @@ def parse_args(cli_args):
     return parser.parse_args(cli_args)
 
 
-# if __name__ == "__main__":
-    # parsed_args = parse_args(sys.argv[1:])
-    # try:
-    #     with open(parsed_args.file) as f:
-    #         content = f.readlines()
-    # except EnvironmentError:
-    #     print("Could not read file %s" % parsed_args.file)
-    #     sys.exit(1)
-    #
-    # haystacks = HaystackCollection(content)
-    # print(haystacks.search(Operator, parsed_args.keywords.split()))
+if __name__ == "__main__":
+    parsed_args = parse_args(sys.argv[1:])
+    try:
+        with open(parsed_args.file) as f:
+            content = f.readlines()
+    except EnvironmentError:
+        print("Could not read file %s" % parsed_args.file)
+        sys.exit(1)
+
+    haystacks = HaystackCollection(content)
+    print(
+        " ".join(
+            map(
+                str,
+                haystacks.search(parsed_args.operator, parsed_args.keywords.split())
+            )
+        )
+    )
