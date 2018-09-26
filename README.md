@@ -21,13 +21,13 @@ optional arguments:
 #### Output
 ```
 > python3 main.py -f input -k "Care Quality Commission" -o OR
-0, 1, 2, 3, 4, 5, 6
+0,1,2,3,4,5,6
 
 > python3 main.py -f input -k "September 2004" -o OR
 9
 
 > python3 main.py -f input -k "general population generally" -o OR
-6, 8
+6,8
  
 > python3 main.py -f input -k "Care Quality Commission admission" -o AND
 1

@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     haystacks = HaystackCollection(content)
     print(
-        " ".join(
+        ",".join(
             map(
                 str,
                 haystacks.search(parsed_args.operator, parsed_args.keywords.split())
