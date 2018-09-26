@@ -22,7 +22,7 @@ class HaystackCollection:
             Operator('OR'): any,
             Operator('AND'): all,
         }
-        # we not need to validate whether operation is valid or not because enum takes care of it
+        # we do not need to validate whether operation is valid or not because enum takes care of it
         filter_callable = operation_map[operation]
         return [index for index, haystack in enumerate(self.haystacks)
                 if filter_callable(needle in haystack.split() for needle in needles)]
