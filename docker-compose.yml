@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  riak:
+    image: basho/riak-kv:latest
+    ports:
+      - "8098:8098"
