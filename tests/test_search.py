@@ -12,8 +12,15 @@ class TestStringSearch(unittest.TestCase):
         ]
         string_search = StringSearch(input_strings)
 
-        result = string_search.find_indices_containing_all_of(['another', 'test'])
-        self.assertEqual(result, [1, 2])
+        self.assertEqual(
+            string_search.find_indices_containing_all_of(['another', 'test']),
+            [1, 2]
+        )
+
+        self.assertEqual(
+            string_search.find_indices_containing_all_of(['yet', 'another']),
+            [2]
+        )
 
     def test_find_containing_any_strings(self):
         input_strings = [
